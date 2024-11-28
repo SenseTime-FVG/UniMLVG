@@ -1,0 +1,501 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="UniMLVG: Unified Framework for Multi-view Long Video Generation with
+  Comprehensive Control Capabilities for Autonomous Driving">
+  <meta name="keywords" content="UniMLVG, street-view generation, video, generation, DiT, long-duration">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>UniMLVG: Unified Framework for Multi-view Long Video Generation with
+    Comprehensive Control Capabilities for Autonomous Driving</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma-carousel@4.0.3/dist/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css" />
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+
+  <script src="./static/js/jquery-3.2.1.min.js"></script>
+  <script defer="" src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/jquery.event.move.js"></script> 
+
+  <!-- <link rel="stylesheet" href="./static/css/index.css"> -->
+  <!-- <link rel="icon" href="./images/"> -->
+
+  <script src="https://cdn.jsdelivr.net/npm/bulma-carousel@4.0.3/dist/js/bulma-carousel.min.js"></script>
+
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <script>
+    $(document).ready(function () {
+      var int = setInterval(fixCount, 100);
+      var busuanziSiteOffset = parseInt(0);
+      function fixCount() {
+        if ($("#busuanzi_container_page_pv").css("display") != "none") {
+          clearInterval(int);
+          $("#busuanzi_value_page_pv").html(
+            parseInt($("#busuanzi_value_page_pv").html()) + busuanziSiteOffset
+          );
+        }
+      }
+    });
+  </script>
+  <style type="text/css">
+		[mt_node=trans_loading]::after{
+		content: '';
+		vertical-align: middle !important;
+		width: 1em !important;
+		height: 1em !important;
+		display: inline-block !important;
+		margin: 0 4px !important;
+		border: 2px rgba(0, 0, 0, 0.25) solid !important;
+		border-top: 2px rgba(0, 0, 0, 1) solid !important;
+		border-radius: 50% !important;
+		padding: 0 !important;
+		-webkit-animation: immersive-translate-loading-animation 0.6s infinite linear !important;
+		animation: immersive-translate-loading-animation 0.6s infinite linear !important;
+		}
+
+		@keyframes immersive-translate-loading-animation {
+			from {
+				transform: rotate(0deg,0deg,0deg);
+			}
+			to {
+				transform: rotate(359deg,0deg,0deg);
+			}
+		}
+	</style>
+  <style type="text/css">[mt_node^=trans]{display: none !important;}</style>
+
+</head>
+
+<body>
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+
+            <h1 class="title is-1 publication-title">
+              UniMLVG: Unified Framework for Multi-view Long Video Generation with
+              Comprehensive Control Capabilities for Autonomous Driving
+            </h1>
+            <div class="is-size-4 publication-authors">
+              <span style="color: blue;" class="author-block">Rui Chen<sup>1</sup>,</span>
+              <span style="color: blue;" class="author-block">Zehuan Wu<sup>2</sup>,</span>
+              <span style="color: blue;" class="author-block">Yichen Liu<sup>2</sup>,</span>
+              <span style="color: blue;" class="author-block">Yuxin Guo<sup>2</sup>,</span>
+              <span style="color: blue;" class="author-block">Jingcheng Ni<sup>2</sup>,</span>
+              <span style="color: blue;" class="author-block">Haifeng Xia<sup>1</sup>,</span>
+              <span style="color: blue;" class="author-block">Siyu Xia<sup>1</sup>,</span>
+            </div>
+
+            <div class="is-size-4 publication-authors">
+              <span class="author-block"><sup>1</sup>Southeast University &nbsp</span>
+              <span class="author-block"><sup>2</sup>SenseTime Research</span>
+            </div>
+
+            <div class="column has-text-centered">
+                
+              <div class="publication-links">
+                <!-- PDF Link. -->
+                <!-- <span class="link-block">
+                  <a href="https://" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                    </span>
+                    <span>Paper</span>
+                  </a>
+                </span> -->
+                <!-- Arxiv Link. -->
+                <span class="link-block">
+                  <a href="https://" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                    </span>
+                    <span>arXiv</span>
+                  </a>
+                </span>
+                <!-- Code Link. -->
+                <span class="link-block">
+                  <a href="https://"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="fab fa-github"></i>
+                    </span>
+                    <span>Code</span>
+                  </a>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container is-max-desktop">
+      <!-- Abstract. -->
+      <div class="columns is-centered has-text-centered" style="background-color: #f5f5f5;">
+        <div class="column is-five-sixths">
+          <h2 class="title is-3">Abstract</h2>
+          <div class="content has-text-justified">
+            <p>
+                The creation of diverse and realistic driving scenarios has become essential to enhance perception and planning capabilities of the autonomous driving system.
+                However, generating long-duration, surround-view consistent driving videos remains a significant challenge. To address this, we present <b>UniMLVG</b>, a unified framework designed to generate extended street multi-perspective videos under precise control. By integrating single- and multi-view driving videos into the training data, our approach updates cross-frame and cross-view modules across three stages with different training objectives, substantially boosting the diversity and quality of generated visual content. 
+                Additionally, we employ the explicit viewpoint modeling in multi-view video generation to effectively improve motion transition consistency. <b>Capable of handling various input reference formats (e.g., text, images, or video), our UniMLVG generates high-quality multi-view videos according to the corresponding condition constraints such as 3D bounding boxes or frame-level text descriptions.</b>
+                Compared to the best models with similar capabilities, our framework achieves improvements of <b>21.4%</b> in FID and <b>36.5%</b> in FVD. 
+            </p>
+          </div>
+        </div>
+      </div>
+      <!--/ Abstract. -->
+
+    </div>
+  </section>
+
+  <section class="hero is-light is-small">
+    <div class="hero-body">
+      <div class="container">
+
+        <h2 class="title is-3">Framework: Extend MM-DiT to Multi-view Video Generation</h2>
+        <div class="columns is-centered has-text-centered">
+          <img src="./img/framework.png" alt="architecture of UniMLVG" width="90%">
+        </div>
+        <p class="content has-text-left is-size-5">
+          <b>UniMLVG</b> enhances text-to-image generation models by introducing cross-view and temporal modules, along with a unified conditional control mechanism. By leveraging <b>multi-task</b> training objectives (image/video prediction and image/video generation), <b>mixed dataset</b> training, and a <b>multi-stage</b> training strategy, it enables the generation of long-duration, surround-view consistent driving scene videos.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="hero is-small">
+    <div class="hero-body">
+      <div class="container">
+        <div class="columns is-max-desktop">
+          <div class="column has-text-centered">
+            <span style="max-width:fit-content;margin:auto">
+              <h2 class="title is-4">
+                Generated videos on this page are
+                <span style="color: brown;">20s</span> at
+                <span style="color: brown;">12 FPS</span> from <span style="color:
+              brown;">single inference</span> on validation datasets!
+              </h2>
+              <h2 class="title is-5">
+                Each video is divided into four rows: the first row represents the Ground Truth, the second row shows the 3D boxes condition, the third row displays the HDmap condition, and the last row presents our generated results.
+              </h2>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="hero is-small">
+    <div class="hero-body">
+      <div class="container">
+        <h2 class="title is-3">Generation <u>With</u> Reference Frames</h2>
+        <div id="results-1" class="carousel results-carousel">
+          <div class="item">
+            <p class="content has-text-centered is-size-5">
+              <i>"daytime, sunny"</i>
+            </p>
+            <video playsinline controls preload="none" muted loop width="100%">
+              <source data-src="./video/ref/8.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="item">
+            <p class="content has-text-centered is-size-5">
+              <i>"daytime, rainy"</i>
+            </p>
+            <video playsinline controls preload="none" muted loop width="100%">
+              <source data-src="./video/ref/11.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="item">
+            <p class="content has-text-centered is-size-5">
+              <i>"night time"</i>
+            </p>
+            <video playsinline controls preload="none" muted loop width="100%">
+              <source data-src="./video/ref/3.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+  </section>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const carouselElement = document.querySelector('#results-1');
+      const items = carouselElement.querySelectorAll('.item');
+
+      // add poster
+      const videos = carouselElement.querySelectorAll('video');
+      videos.forEach(video => {
+        const source = video.querySelector('source');
+        const videoSrc = source.dataset.src || source.src;
+      });
+
+      // Initialize the carousel with autoplay
+      const carousel = bulmaCarousel.attach('#results-1', {
+        slidesToScroll: 1,
+        slidesToShow: 1,
+        loop: true,
+        infinite: false,
+        autoplay: false,
+        breakpoints: [],
+      })[0];
+
+      // Function to load video source
+      function loadVideo(videoElement) {
+        const source = videoElement.querySelector('source');
+        if (source.dataset.src && !source.src) {
+          source.src = source.dataset.src;
+          videoElement.load();
+        }
+      }
+
+      // Function to handle video play/pause
+      function handleVideos(bulmaCarouselInstance) {
+        if (bulmaCarouselInstance && bulmaCarouselInstance.next) {
+          currentIndex = bulmaCarouselInstance.next
+        } else {
+          currentIndex = 0
+        }
+        items.forEach((item, index) => {
+          const videos = item.querySelectorAll('video');
+          videos.forEach(video => {
+            if (index === currentIndex) {
+              loadVideo(video);
+              video.currentTime = 0; // Reset to start
+              video.play();
+            } else {
+              video.pause();
+            }
+          });
+        });
+      }
+
+      // Listen for carousel slide changes
+      carousel.on('after:show', function (bulmaCarouselInstance) {
+        handleVideos(bulmaCarouselInstance);
+      });
+
+      // Initial load
+      handleVideos();
+    });
+  </script>
+
+  <section class="hero is-small">
+    <div class="hero-body">
+      <div class="container">
+        <h2 class="title is-3">Generation <u>Without</u> Reference Frames</h2>
+        <div id="results-2" class="carousel results-carousel">
+          <div class="item">
+            <p class="content has-text-centered is-size-5">
+              <i>"daytime, sunny"</i>
+            </p>
+            <video playsinline controls preload="none" muted loop width="100%">
+              <source data-src="./video/unref/11.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="item">
+            <p class="content has-text-centered is-size-5">
+              <i>"daytime, rainy"</i>
+            </p>
+            <video playsinline controls preload="none" muted loop width="100%">
+              <source data-src="./video/unref/0.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="item">
+            <p class="content has-text-centered is-size-5">
+              <i>"night time"</i>
+            </p>
+            <video playsinline controls preload="none" muted loop width="100%">
+              <source data-src="./video/unref/7.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+  </section>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const carouselElement = document.querySelector('#results-2');
+      const items = carouselElement.querySelectorAll('.item');
+
+      // add poster
+      const videos = carouselElement.querySelectorAll('video');
+      videos.forEach(video => {
+        const source = video.querySelector('source');
+        const videoSrc = source.dataset.src || source.src;
+      });
+
+      // Initialize the carousel with autoplay
+      const carousel = bulmaCarousel.attach('#results-2', {
+        slidesToScroll: 1,
+        slidesToShow: 1,
+        loop: true,
+        infinite: false,
+        autoplay: false,
+        breakpoints: [],
+      })[0];
+
+      // Function to load video source
+      function loadVideo(videoElement) {
+        const source = videoElement.querySelector('source');
+        if (source.dataset.src && !source.src) {
+          source.src = source.dataset.src;
+          videoElement.load();
+        }
+      }
+
+      // Function to handle video play/pause
+      function handleVideos(bulmaCarouselInstance) {
+        if (bulmaCarouselInstance && bulmaCarouselInstance.next) {
+          currentIndex = bulmaCarouselInstance.next
+        } else {
+          currentIndex = 0
+        }
+        items.forEach((item, index) => {
+          const videos = item.querySelectorAll('video');
+          videos.forEach(video => {
+            if (index === currentIndex) {
+              loadVideo(video);
+              video.currentTime = 0; // Reset to start
+              video.play();
+            } else {
+              video.pause();
+            }
+          });
+        });
+      }
+
+      // Listen for carousel slide changes
+      carousel.on('after:show', function (bulmaCarouselInstance) {
+        handleVideos(bulmaCarouselInstance);
+      });
+
+      // Initial load
+      handleVideos();
+    });
+  </script>
+
+  <section class="hero is-small">
+    <div class="hero-body">
+      <div class="container">
+        <h2 class="title is-3">Snowy Scene Generation Based on <u>Text Editing</u></h2>
+        <div id="results-3" class="carousel results-carousel">
+          <div class="item">
+            <!-- <p class="content has-text-centered is-size-5">
+              <i>"sunny" -> "snowy"</i>
+            </p> -->
+            <video playsinline controls preload="none" muted loop width="100%">
+              <source data-src="./video/snow/4.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="item">
+            <!-- <p class="content has-text-centered is-size-5">
+              <i>"sunny" -> "snowy"</i>
+            </p> -->
+            <video playsinline controls preload="none" muted loop width="100%">
+              <source data-src="./video/snow/0.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="item">
+            <!-- <p class="content has-text-centered is-size-5">
+              <i>"sunny" -> "snowy"</i>
+            </p> -->
+            <video playsinline controls preload="none" muted loop width="100%">
+              <source data-src="./video/snow/8.mp4" type="video/mp4">
+            </video>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+  </section>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const carouselElement = document.querySelector('#results-3');
+      const items = carouselElement.querySelectorAll('.item');
+
+      // add poster
+      const videos = carouselElement.querySelectorAll('video');
+      videos.forEach(video => {
+        const source = video.querySelector('source');
+        const videoSrc = source.dataset.src || source.src;
+      });
+
+      // Initialize the carousel with autoplay
+      const carousel = bulmaCarousel.attach('#results-3', {
+        slidesToScroll: 1,
+        slidesToShow: 1,
+        loop: true,
+        infinite: false,
+        autoplay: false,
+        breakpoints: [],
+      })[0];
+
+      // Function to load video source
+      function loadVideo(videoElement) {
+        const source = videoElement.querySelector('source');
+        if (source.dataset.src && !source.src) {
+          source.src = source.dataset.src;
+          videoElement.load();
+        }
+      }
+
+      // Function to handle video play/pause
+      function handleVideos(bulmaCarouselInstance) {
+        if (bulmaCarouselInstance && bulmaCarouselInstance.next) {
+          currentIndex = bulmaCarouselInstance.next
+        } else {
+          currentIndex = 0
+        }
+        items.forEach((item, index) => {
+          const videos = item.querySelectorAll('video');
+          videos.forEach(video => {
+            if (index === currentIndex) {
+              loadVideo(video);
+              video.currentTime = 0; // Reset to start
+              video.play();
+            } else {
+              video.pause();
+            }
+          });
+        });
+      }
+
+      // Listen for carousel slide changes
+      carousel.on('after:show', function (bulmaCarouselInstance) {
+        handleVideos(bulmaCarouselInstance);
+      });
+
+      // Initial load
+      handleVideos();
+    });
+  </script>
+
+
+  <footer class="footer">
+    <div class="container">
+      <div class="columns is-centered">
+        <div class="content">
+          <h2 class="title is-5 has-text-centered">Please check our paper for more details and results!
+          </h2>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+
+</html>
