@@ -235,16 +235,7 @@
       const carouselElement = document.querySelector('#results-1');
       const items = carouselElement.querySelectorAll('.item');
   
-      const videos = carouselElement.querySelectorAll('video');
-      videos.forEach(video => {
-        const source = video.querySelector('source');
-        if (source.dataset.src && !source.src) {
-          source.src = source.dataset.src; 
-          video.load(); 
-        }
-        video.currentTime = 0; 
-        video.play(); 
-      });
+      // Initialize the carousel with autoplay
       const carousel = bulmaCarousel.attach('#results-1', {
         slidesToScroll: 1,
         slidesToShow: 1,
@@ -253,6 +244,44 @@
         autoplay: false,
         breakpoints: [],
       })[0];
+  
+      // Function to load video source
+      function loadVideo(videoElement) {
+        const source = videoElement.querySelector('source');
+        if (source.dataset.src && !source.src) {
+          source.src = source.dataset.src;
+          videoElement.load();
+        }
+      }
+  
+      // Function to handle video play/pause
+      function handleVideos(bulmaCarouselInstance) {
+        if (bulmaCarouselInstance && bulmaCarouselInstance.next) {
+          currentIndex = bulmaCarouselInstance.next
+        } else {
+          currentIndex = 0
+        }
+        items.forEach((item, index) => {
+          const videos = item.querySelectorAll('video');
+          videos.forEach(video => {
+            if (index === currentIndex) {
+              loadVideo(video);
+              video.currentTime = 0; // Reset to start
+              video.play();
+            } else {
+              video.pause();
+            }
+          });
+        });
+      }
+  
+      // Listen for carousel slide changes
+      carousel.on('after:show', function (bulmaCarouselInstance) {
+        handleVideos(bulmaCarouselInstance);
+      });
+  
+      // Initial load
+      handleVideos();
     });
   </script>
 
@@ -295,16 +324,7 @@
       const carouselElement = document.querySelector('#results-2');
       const items = carouselElement.querySelectorAll('.item');
   
-      const videos = carouselElement.querySelectorAll('video');
-      videos.forEach(video => {
-        const source = video.querySelector('source');
-        if (source.dataset.src && !source.src) {
-          source.src = source.dataset.src; 
-          video.load(); 
-        }
-        video.currentTime = 0; 
-        video.play(); 
-      });
+      // Initialize the carousel with autoplay
       const carousel = bulmaCarousel.attach('#results-2', {
         slidesToScroll: 1,
         slidesToShow: 1,
@@ -313,6 +333,44 @@
         autoplay: false,
         breakpoints: [],
       })[0];
+  
+      // Function to load video source
+      function loadVideo(videoElement) {
+        const source = videoElement.querySelector('source');
+        if (source.dataset.src && !source.src) {
+          source.src = source.dataset.src;
+          videoElement.load();
+        }
+      }
+  
+      // Function to handle video play/pause
+      function handleVideos(bulmaCarouselInstance) {
+        if (bulmaCarouselInstance && bulmaCarouselInstance.next) {
+          currentIndex = bulmaCarouselInstance.next
+        } else {
+          currentIndex = 0
+        }
+        items.forEach((item, index) => {
+          const videos = item.querySelectorAll('video');
+          videos.forEach(video => {
+            if (index === currentIndex) {
+              loadVideo(video);
+              video.currentTime = 0; // Reset to start
+              video.play();
+            } else {
+              video.pause();
+            }
+          });
+        });
+      }
+  
+      // Listen for carousel slide changes
+      carousel.on('after:show', function (bulmaCarouselInstance) {
+        handleVideos(bulmaCarouselInstance);
+      });
+  
+      // Initial load
+      handleVideos();
     });
   </script>
 
@@ -355,16 +413,7 @@
       const carouselElement = document.querySelector('#results-3');
       const items = carouselElement.querySelectorAll('.item');
   
-      const videos = carouselElement.querySelectorAll('video');
-      videos.forEach(video => {
-        const source = video.querySelector('source');
-        if (source.dataset.src && !source.src) {
-          source.src = source.dataset.src; 
-          video.load(); 
-        }
-        video.currentTime = 0; 
-        video.play(); 
-      });
+      // Initialize the carousel with autoplay
       const carousel = bulmaCarousel.attach('#results-3', {
         slidesToScroll: 1,
         slidesToShow: 1,
@@ -373,6 +422,44 @@
         autoplay: false,
         breakpoints: [],
       })[0];
+  
+      // Function to load video source
+      function loadVideo(videoElement) {
+        const source = videoElement.querySelector('source');
+        if (source.dataset.src && !source.src) {
+          source.src = source.dataset.src;
+          videoElement.load();
+        }
+      }
+  
+      // Function to handle video play/pause
+      function handleVideos(bulmaCarouselInstance) {
+        if (bulmaCarouselInstance && bulmaCarouselInstance.next) {
+          currentIndex = bulmaCarouselInstance.next
+        } else {
+          currentIndex = 0
+        }
+        items.forEach((item, index) => {
+          const videos = item.querySelectorAll('video');
+          videos.forEach(video => {
+            if (index === currentIndex) {
+              loadVideo(video);
+              video.currentTime = 0; // Reset to start
+              video.play();
+            } else {
+              video.pause();
+            }
+          });
+        });
+      }
+  
+      // Listen for carousel slide changes
+      carousel.on('after:show', function (bulmaCarouselInstance) {
+        handleVideos(bulmaCarouselInstance);
+      });
+  
+      // Initial load
+      handleVideos();
     });
   </script>
 
@@ -405,17 +492,8 @@
     document.addEventListener('DOMContentLoaded', function () {
       const carouselElement = document.querySelector('#results-4');
       const items = carouselElement.querySelectorAll('.item');
-
-      const videos = carouselElement.querySelectorAll('video');
-      videos.forEach(video => {
-        const source = video.querySelector('source');
-        if (source.dataset.src && !source.src) {
-          source.src = source.dataset.src; 
-          video.load(); 
-        }
-        video.currentTime = 0; 
-        video.play(); 
-      });
+  
+      // Initialize the carousel with autoplay
       const carousel = bulmaCarousel.attach('#results-4', {
         slidesToScroll: 1,
         slidesToShow: 1,
@@ -424,6 +502,44 @@
         autoplay: false,
         breakpoints: [],
       })[0];
+  
+      // Function to load video source
+      function loadVideo(videoElement) {
+        const source = videoElement.querySelector('source');
+        if (source.dataset.src && !source.src) {
+          source.src = source.dataset.src;
+          videoElement.load();
+        }
+      }
+  
+      // Function to handle video play/pause
+      function handleVideos(bulmaCarouselInstance) {
+        if (bulmaCarouselInstance && bulmaCarouselInstance.next) {
+          currentIndex = bulmaCarouselInstance.next
+        } else {
+          currentIndex = 0
+        }
+        items.forEach((item, index) => {
+          const videos = item.querySelectorAll('video');
+          videos.forEach(video => {
+            if (index === currentIndex) {
+              loadVideo(video);
+              video.currentTime = 0; // Reset to start
+              video.play();
+            } else {
+              video.pause();
+            }
+          });
+        });
+      }
+  
+      // Listen for carousel slide changes
+      carousel.on('after:show', function (bulmaCarouselInstance) {
+        handleVideos(bulmaCarouselInstance);
+      });
+  
+      // Initial load
+      handleVideos();
     });
   </script>
 
