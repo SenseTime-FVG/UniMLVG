@@ -1,5 +1,5 @@
 # UniMLVG
-[![arXiv](https://img.shields.io/badge/ArXiv-2411.13807-b31b1b.svg?style=plastic)](https://arxiv.org/pdf/2412.04842) [![web](https://img.shields.io/badge/Web-UniMLVG-blue.svg?style=plastic)](https://sensetime-fvg.github.io/UniMLVG/) 
+[![arXiv](https://img.shields.io/badge/ArXiv-2412.04842-b31b1b.svg?style=plastic)](https://arxiv.org/pdf/2412.04842) [![web](https://img.shields.io/badge/Web-UniMLVG-blue.svg?style=plastic)](https://sensetime-fvg.github.io/UniMLVG/) 
 
 The official repository for
 
